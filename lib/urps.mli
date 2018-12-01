@@ -21,9 +21,12 @@ module Estimator : sig
     int -> int
     -> t
 
-  (** [init d e]
+  (** [init s k]
 
-      Initialize estimator with settings δ and ε (d and e).
+      Initialize estimator:
+
+      - [s]: precision of estimator (s = log(1/δ))
+      - [k]: error of estimator (k = e/ε)
 
       The error of the estimator in answering a query for
       f_j is within a factor of ε with probability δ. *)
@@ -62,9 +65,9 @@ module Sampler : sig
   (** [init c s k]
       Initialize sampler with settings c, s, k:
 
-      [c]: sampler memory size (size of set Γ)
-      [s]: precision of estimator (s = log(1/δ))
-      [k]: error of estimator (k = e/ε)
+      - [c]: sampler memory size (size of set Γ)
+      - [s]: precision of estimator (s = log(1/δ))
+      - [k]: error of estimator (k = e/ε)
 
       The error of the estimator in answering a query for
       f_j is within a factor of ε with probability δ. *)
