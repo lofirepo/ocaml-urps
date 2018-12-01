@@ -1,4 +1,11 @@
 opam-version: "2.0"
+name: "urps"
+synopsis: "URPS: Uniform Random Peer Sampler"
+description: """
+URPS processes on the fly an unbounded and arbitrarily biased input stream
+made of node identifiers exchanged within the system,
+and outputs a stream that preserves Uniformity and Freshness properties.
+"""
 maintainer: "TG x Thoth <*@tg-x.net>"
 authors: ["TG x Thoth <*@tg-x.net>"]
 tags: [ "p2p" "protocol" "gossip" "uniform" "random" "peer sampling" "stream sampler" ]
