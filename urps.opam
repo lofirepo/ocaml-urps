@@ -1,0 +1,21 @@
+opam-version: "2.0"
+maintainer: "TG x Thoth <*@tg-x.net>"
+authors: ["TG x Thoth <*@tg-x.net>"]
+tags: [ "p2p" "protocol" "gossip" "uniform" "random" "peer sampling" "stream sampler" ]
+license: "MPL-2.0"
+homepage: "https://github.com/p2pcollab/ocaml-urps"
+doc: "https://p2pcollab.github.io/doc/ocaml-urps/urps/"
+dev-repo: "git+https://github.com/p2pcollab/ocaml-urps.git"
+bug-reports: "https://github.com/p2pcollab/urps/issues"
+depends:
+[
+  "dune" {build & >= "1.0.0"}
+  "ounit" {with-test}
+]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+]
+run-test: [
+  ["dune" "runtest" "-p" name "-j" jobs]
+]

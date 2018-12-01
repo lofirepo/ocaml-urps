@@ -1,0 +1,8 @@
+(test
+ (name test_urps)
+ (package urps)
+ (libraries
+  urps
+  oUnit
+ )
+)
