@@ -78,6 +78,6 @@ module Sampler : sig
   (** [add t j]
       Add node [j] from input stream to sampler [t].
 
-      Return next value of output stream. *)
+      Return next node in output stream. *)
 
 end

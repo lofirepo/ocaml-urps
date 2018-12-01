@@ -1,4 +1,3 @@
-
 (** 2-universal hashing
  *
  * See https://github.com/mailund/the-joys-of-hashing
@@ -36,7 +35,7 @@ module UniHash2 = struct
     then Int64.sub y p
     else y
 
-  (** Return 2-universal hsah value of [x] *)
+  (** Return 2-universal hash value of [x] *)
   let hash t x =
     let f0 = Int64.of_int32 @@ Array.get t.f 0 in
     let f1 = Int64.of_int32 @@ Array.get t.f 1 in
@@ -77,7 +76,7 @@ module Estimator = struct
     {s; k; h; f}
 
   (** Add node [j] to [f]:
-      increase counters for all F[s][hs(j)]*)
+      increase counters for all F[s][hs(j)] *)
   let rec add_f ?(s=0) t j =
     if s < t.s then
       let hsj = (Int32.to_int (UniHash2.hash t.h.(s) j)) mod t.k in
@@ -138,11 +137,13 @@ module Sampler = struct
       est: Estimator.t;
     }
 
+  (** Initialize sampler *)
   let init c s k =
     let est = Estimator.init s k in
     let g = G.empty in
     { c; g; est }
 
+  (** Get random element from set *)
   let rand_elem g =
     let r = Random.int @@ G.cardinal g in
     let rv =
@@ -157,6 +158,8 @@ module Sampler = struct
     match rv with
     | (_, v) -> v
 
+  (** Add node [j] from input stream to sampler [t]
+      Return next node in output stream *)
   let add t j =
     Estimator.add t.est j;
     let fj = Estimator.estimate t.est j in
