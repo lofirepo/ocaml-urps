@@ -51,8 +51,9 @@ let test_sampler _ctx =
       then nm  (* malicious *)
       else n
     in
-    let j = Int64.to_string @@ Random.int64 @@ Int64.of_int bound in
-    let k = Sampler.add smpl j in
+    let r = Random.int64 @@ Int64.of_int bound in
+    let j = Int64.to_string r in
+    let (k, _d) = Sampler.add smpl j r in
     Hashtbl.replace sin  j @@ (get_counter sin  j) + 1;
     Hashtbl.replace sout k @@ (get_counter sout k) + 1;
   done;

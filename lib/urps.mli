@@ -45,11 +45,11 @@ end
 
 module Sampler : sig
 
-  type t
+  type 'a t
 
   val init :
     int -> int -> int -> int
-    -> t
+    -> 'a t
   (** [init c s k idlen]
       Initialize sampler with settings c, s, k:
 
@@ -66,8 +66,8 @@ module Sampler : sig
    *)
 
   val add :
-    t -> string
-    -> string
+    'a t -> string -> 'a
+    -> (string * 'a)
   (** [add t j]
       Add node [j] from input stream to sampler [t].
 

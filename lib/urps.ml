@@ -29,7 +29,7 @@ module Estimator = struct
   let init s k keylen =
     let f = Array.make_matrix s k 0 in
     let h = gen_hash s keylen in
-    {s; k; h; f}
+    {s; k; h; f }
 
   (** Add node [j] to [f]:
       increase counters for all F[s][hs(j)] *)
@@ -41,7 +41,8 @@ module Estimator = struct
     else
       ()
 
-  (** Add node to estimator:
+  (** Add node to estimator.
+
       F[s][hs(j)] <- F[s][hs(j)] + 1 *)
   let add t j =
     add_f t j
@@ -87,17 +88,19 @@ module Sampler = struct
 
   module G = Set.Make(String)
 
-  type t = {
+  type 'a t = {
       c: int;
       mutable g: G.t;
       est: Estimator.t;
+      data: (string, 'a) Hashtbl.t;
     }
 
   (** Initialize sampler *)
   let init c s k keylen =
     let est = Estimator.init s k keylen in
     let g = G.empty in
-    { c; g; est }
+    let data = Hashtbl.create c in
+    { c; g; est; data }
 
   (** Get random element from set *)
   let rand_elem g =
@@ -114,25 +117,33 @@ module Sampler = struct
     match rv with
     | (_, v) -> v
 
-  (** Add node [j] from input stream to sampler [t]
+  (** Add node [id] from input stream to sampler [t] with metadata [data]
+
       Return next node in output stream *)
-  let add t j =
+  let add t j data =
     Estimator.add t.est j;
     let fj = Estimator.estimate t.est j in
     let min = Estimator.min t.est in
     t.g <-
       if G.cardinal t.g < t.c then
-        G.add j t.g
+        begin
+          Hashtbl.replace t.data j data;
+          G.add j t.g
+        end
       else
         begin
           let aj = (float_of_int min) /. (float_of_int fj) in
           if Random.float 1. <= aj
           then
             let k = rand_elem t.g in
+            Hashtbl.remove t.data k;
+            Hashtbl.replace t.data j data;
             G.add j @@ G.remove k t.g
           else
             t.g
         end;
-    rand_elem t.g
+    let k = rand_elem t.g in
+    let d = Hashtbl.find t.data k in
+    (k, d)
 
 end
