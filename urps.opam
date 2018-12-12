@@ -18,7 +18,6 @@ depends:
 [
   "dune" {build & >= "1.0.0"}
   "sunnyhash"
-  "stdint"
   "ounit" {with-test}
 ]
 build: [

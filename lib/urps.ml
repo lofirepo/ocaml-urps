@@ -1,4 +1,3 @@
-open Stdint
 
 module Estimator = struct
 
@@ -35,7 +34,7 @@ module Estimator = struct
       increase counters for all F[s][hs(j)] *)
   let rec add_f ?(s=0) t j =
     if s < t.s then
-      let hsj = (Int32.to_int (Sunnyhash.hash31 t.h.(s) j)) mod t.k in
+      let hsj = (Sunnyhash.hash t.h.(s) j) mod t.k in
       t.f.(s).(hsj) <- t.f.(s).(hsj) + 1;
       add_f t j ~s:(s+1)
     else
@@ -49,7 +48,7 @@ module Estimator = struct
 
   let rec min_fj ?(s=0) ?(min=max_int) t j =
     if s < t.s then
-      let hsj = (Int32.to_int (Sunnyhash.hash31 t.h.(s) j)) mod t.k in
+      let hsj = (Sunnyhash.hash t.h.(s) j) mod t.k in
       let v = t.f.(s).(hsj) in
       let min = if v < min then v else min in
       min_fj t j ~min ~s:(s+1)

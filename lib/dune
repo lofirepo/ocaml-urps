@@ -3,6 +3,5 @@
  (public_name urps)
  (modules urps)
  (libraries
-    sunnyhash
-    stdint)
+    sunnyhash)
 )
