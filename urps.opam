@@ -11,7 +11,7 @@ authors: ["TG x Thoth <*@tg-x.net>"]
 tags: [ "p2p" "protocol" "gossip" "uniform" "random" "peer sampling" "stream sampler" ]
 license: "MPL-2.0"
 homepage: "https://github.com/p2pcollab/ocaml-urps"
-doc: "https://p2pcollab.github.io/doc/ocaml-urps/urps/"
+doc: "https://p2pcollab.github.io/doc/urps/"
 dev-repo: "git+https://github.com/p2pcollab/ocaml-urps.git"
 bug-reports: "https://github.com/p2pcollab/ocaml-urps/issues"
 depends:
