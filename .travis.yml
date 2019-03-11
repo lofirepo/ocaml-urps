@@ -6,9 +6,6 @@ env:
   - OCAML_VERSION=4.07 PACKAGE=urps PINS="sunnyhash:git+https://github.com/p2pcollab/ocaml-sunnyhash"
   - OCAML_VERSION=4.06 PACKAGE=urps PINS="sunnyhash:git+https://github.com/p2pcollab/ocaml-sunnyhash"
   - OCAML_VERSION=4.05 PACKAGE=urps PINS="sunnyhash:git+https://github.com/p2pcollab/ocaml-sunnyhash"
-  - OCAML_VERSION=4.04 PACKAGE=urps PINS="sunnyhash:git+https://github.com/p2pcollab/ocaml-sunnyhash"
-  - OCAML_VERSION=4.03 PACKAGE=urps PINS="sunnyhash:git+https://github.com/p2pcollab/ocaml-sunnyhash"
-  - OCAML_VERSION=4.02 PACKAGE=urps PINS="sunnyhash:git+https://github.com/p2pcollab/ocaml-sunnyhash"
 os:
   - linux
   - osx
