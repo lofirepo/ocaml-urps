@@ -1,7 +1,4 @@
 (library
- (name urps)
+ (name        urps)
  (public_name urps)
- (modules urps)
- (libraries
-    sunnyhash)
-)
+ (libraries   nocrypto))

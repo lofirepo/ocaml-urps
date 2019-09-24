@@ -1,8 +1,4 @@
 (test
- (name test_urps)
- (package urps)
- (libraries
-  urps
-  oUnit
- )
-)
+ (name      test_urps)
+ (package   urps)
+ (libraries oUnit urps nocrypto.unix))

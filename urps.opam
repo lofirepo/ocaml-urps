@@ -17,8 +17,8 @@ bug-reports: "https://github.com/p2pcollab/ocaml-urps/issues"
 depends:
 [
   "dune" {build & >= "1.0.0"}
-  "sunnyhash"
   "ounit" {with-test}
+  "nocrypto"
 ]
 build: [
   ["dune" "subst"] {pinned}
