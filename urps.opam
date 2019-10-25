@@ -9,7 +9,7 @@ and outputs a stream that preserves Uniformity and Freshness properties.
 maintainer: "TG x Thoth <*@tg-x.net>"
 authors: ["TG x Thoth <*@tg-x.net>"]
 tags: [ "p2p" "protocol" "gossip" "uniform" "random" "peer sampling" "stream sampler" ]
-license: "MPL-2.0"
+license: "AGPL-3.0"
 homepage: "https://github.com/p2pcollab/ocaml-urps"
 doc: "https://p2pcollab.github.io/doc/urps/"
 dev-repo: "git+https://github.com/p2pcollab/ocaml-urps.git"

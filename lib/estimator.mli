@@ -4,8 +4,8 @@ type t
 val init : int -> int -> t
 (** [init s k] initializes the estimator.
 
-    @param [s] precision of estimator (s = log(1/δ))
-    @param [k] error of estimator (k = e/ε)
+    @param s  precision of estimator (s = log(1/δ))
+    @param k  error of estimator (k = e/ε)
 
     The error of the estimator in answering a query for
     f_j is within a factor of ε with probability δ. *)
