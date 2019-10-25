@@ -10,7 +10,7 @@ It processes on the fly an unbounded and arbitrarily biased input stream
 made of node identifiers exchanged within the system,
 and outputs a stream that preserves Uniformity and Freshness properties.
 
-URPS is distributed under the MPL-2.0 license.
+URPS is distributed under the AGPL-3.0 license.
 
 ## Installation
 
@@ -43,4 +43,4 @@ It can be consulted [online][doc] or via `odig`:
 
     odig doc urps
 
-[doc]: https://p2pcollab.github.io/doc/ocaml-urps/
+[doc]: https://p2pcollab.net/doc/ocaml/urps/
