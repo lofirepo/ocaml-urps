@@ -10,7 +10,7 @@ It processes on the fly an unbounded and arbitrarily biased input stream
 made of node identifiers exchanged within the system,
 and outputs a stream that preserves Uniformity and Freshness properties.
 
-URPS is distributed under the AGPL-3.0 license.
+URPS is distributed under the AGPL-3.0-only license.
 
 ## Installation
 
