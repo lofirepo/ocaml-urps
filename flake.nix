@@ -19,7 +19,8 @@
           nocrypto
         ];
         nativeBuildInputs = with pkgs.ocamlPackages; [
-          ounit odoc
+          odoc
+          ounit
         ];
       };
 
