@@ -1,29 +1,50 @@
 {
   description = "URPS: Uniform Random Peer Sampler";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
-  };
+  outputs = { self, nix, nixpkgs }:
 
-  outputs = { self, nixpkgs }: {
+    let
+      supportedSystems = [
+        "x86_64-linux" "aarch64-linux" "armv7l-linux"
+        "x86_64-darwin" "aarch64-darwin"
+      ];
+      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
+    in
+      {
+        overlay = final: prev: {
+          ocaml-urps =
+            with final;
+            ocamlPackages.buildDunePackage rec {
+              pname = "urps";
+              version = "0.0.1";
+              src = self;
+              useDune2 = true;
 
-    packages.x86_64-linux.ocaml-urps =
-      with import nixpkgs { system = "x86_64-linux"; };
-      ocamlPackages.buildDunePackage rec {
-        pname = "urps";
-        version = "0.0.1";
-        src = self;
-        useDune2 = true;
+              nativeBuildInputs = with ocamlPackages; [
+                odoc
+              ];
+              buildInputs = with ocamlPackages; [
+                nocrypto
+              ];
+              checkInputs = with ocamlPackages; [
+                ounit
+              ];
+              doCheck = true;
+            };
+        };
 
-        buildInputs = with pkgs.ocamlPackages; [
-          nocrypto
-        ];
-        nativeBuildInputs = with pkgs.ocamlPackages; [
-          odoc
-          ounit
-        ];
+        packages = forAllSystems self.overlay;
+
+        defaultPackage = forAllSystems (system: (import nixpkgs {
+          inherit system;
+          overlays = [ self.overlay nix.overlay ];
+        }).ocaml-urps);
+
+        checks = forAllSystems (system: {
+          build = self.defaultPackage.${system};
+          test = self.defaultPackage.${system} // {
+            doCheck = true;
+          };
+        });
       };
-
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.ocaml-urps;
-  };
 }
