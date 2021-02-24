@@ -28,38 +28,36 @@
           with final;
           let mkOcamlPackages = prevOcamlPackages:
                 with prevOcamlPackages;
-                let ocamlPackages =
-                      {
-                        inherit ocaml;
-                        inherit findlib;
-                        inherit ocamlbuild;
-                        inherit opam-file-format;
-                        inherit buildDunePackage;
+                let ocamlPackages = {
+                      inherit ocaml;
+                      inherit findlib;
+                      inherit ocamlbuild;
+                      inherit opam-file-format;
+                      inherit buildDunePackage;
 
-                        urps =
-                          buildDunePackage rec {
-                            pname = "urps";
-                            version = "0.0.1";
-                            src = self;
+                      urps =
+                        buildDunePackage rec {
+                          pname = "urps";
+                          version = "0.0.1";
+                          src = self;
 
-                            useDune2 = true;
-                            doCheck = true;
+                          useDune2 = true;
+                          doCheck = true;
 
-                            nativeBuildInputs = with ocamlPackages; [
-                              odoc
-                              ounit
-                            ];
-                            buildInputs = with ocamlPackages; [
-                              nocrypto
-                            ];
-                          };
-                      };
+                          nativeBuildInputs = with ocamlPackages; [
+                            odoc
+                            ounit
+                          ];
+                          buildInputs = with ocamlPackages; [
+                            nocrypto
+                          ];
+                        };
+                    };
                 in ocamlPackages;
           in
             let allOcamlPackages =
                   forAllOcamlPackages (ocamlPackages:
-                    mkOcamlPackages ocaml-ng.${ocamlPackages}
-                  );
+                    mkOcamlPackages ocaml-ng.${ocamlPackages});
             in
               allOcamlPackages // {
                 ocamlPackages = allOcamlPackages.${defaultOcamlPackages};
@@ -68,12 +66,10 @@
         packages =
           forAllSystems (system:
             forAllOcamlPackages (ocamlPackages:
-              nixpkgsFor.${system}.${ocamlPackages}
-            ));
+              nixpkgsFor.${system}.${ocamlPackages}));
 
         defaultPackage =
           forAllSystems (system:
-            nixpkgsFor.${system}.ocamlPackages.urps
-          );
+            nixpkgsFor.${system}.ocamlPackages.urps);
       };
 }
