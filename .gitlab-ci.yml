@@ -18,7 +18,7 @@ build:
   stage: build
   script:
     - nix build
-    - nix build -o ocamlPackages_4_10.blip '.#ocamlPackages_4_10.blip'
-    - nix build -o ocamlPackages_4_11.blip '.#ocamlPackages_4_11.blip'
-    #- nix build -o ocamlPackages_4_12.blip '.#ocamlPackages_4_12.blip'
+    - nix build -o ocamlPackages_4_10.urps '.#ocamlPackages_4_10.urps'
+    - nix build -o ocamlPackages_4_11.urps '.#ocamlPackages_4_11.urps'
+    #- nix build -o ocamlPackages_4_12.urps '.#ocamlPackages_4_12.urps'
     - nix-collect-garbage -d
