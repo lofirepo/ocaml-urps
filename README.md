@@ -18,6 +18,18 @@ URPS is distributed under the AGPL-3.0-only license.
 
     opam install urps
 
+## Building with Nix
+
+Set up Nix Flakes, then run:
+
+    nix build
+
+## Developing with Nix
+
+To get a development shell with all dependencies and build tools installed, run:
+
+    nix develop
+
 ## Building
 
 To build from source, generate documentation, and run tests, use `dune`:
